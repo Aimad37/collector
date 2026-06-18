@@ -87,7 +87,7 @@ jobs:
 
       - name: OWASP Dependency Check
         working-directory: ./backend
-        run: mvn dependency-check:check -B
+        run: mvn dependency-check:check -B -Dnvd.api.key=${{ secrets.NVD_API_KEY }}
         continue-on-error: true
 
       - name: Upload OWASP report
