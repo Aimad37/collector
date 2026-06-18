@@ -1,7 +1,6 @@
 package com.collector.messaging;
 
 import com.collector.model.Notification;
-import com.collector.model.User;
 import com.collector.repository.UserRepository;
 import com.collector.service.NotificationService;
 import lombok.RequiredArgsConstructor;
