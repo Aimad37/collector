@@ -1,0 +1,16 @@
+# Environment
+.env
+
+# Java
+backend/target/
+backend/.mvn/
+backend/*.iml
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
+*.iml
+**/.DS_Store
