@@ -3,6 +3,8 @@ package com.collector.service;
 import com.collector.messaging.AnnoncePublisher;
 import com.collector.model.Annonce;
 import com.collector.repository.AnnonceRepository;
+
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class ValidationService {
 
     private final AnnonceRepository annonceRepository;
     private final AnnoncePublisher annoncePublisher;
+    private final Counter annoncesValidees;    
+    private final Counter annoncesRejetees;  
 
     public void valider(Annonce annonce) {
         boolean valide = verifierAnnonce(annonce);
@@ -23,9 +27,11 @@ public class ValidationService {
         if (valide) {
             annonce.setStatut(Annonce.StatutAnnonce.VALIDEE);
             annonce.setValidatedAt(LocalDateTime.now());
+            annoncesValidees.increment();
             log.info("Annonce {} validée automatiquement", annonce.getId());
         } else {
             annonce.setStatut(Annonce.StatutAnnonce.REJETEE);
+            annoncesRejetees.increment();
             log.warn("Annonce {} rejetée automatiquement", annonce.getId());
         }
 

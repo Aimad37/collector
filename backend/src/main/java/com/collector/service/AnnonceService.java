@@ -6,6 +6,8 @@ import com.collector.model.Annonce;
 import com.collector.model.User;
 import com.collector.repository.AnnonceRepository;
 import com.collector.repository.NotificationRepository;
+
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ public class AnnonceService {
 
     private final AnnonceRepository annonceRepository;
     private final AnnoncePublisher annoncePublisher;
+    private final Counter annoncesCreees;
     private final ValidationService validationService;
 
     // Crée une annonce et lance la validation automatique
@@ -34,6 +37,7 @@ public class AnnonceService {
         annonce.setImageUrl(dto.getImageUrl());
         // Sauvegarde en BDD
         Annonce saved = annonceRepository.save(annonce);
+        annoncesCreees.increment();
         log.info("Annonce créée avec id : {}", saved.getId());
 
         // Validation automatique
