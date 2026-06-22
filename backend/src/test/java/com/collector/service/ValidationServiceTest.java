@@ -4,6 +4,9 @@ import com.collector.messaging.AnnoncePublisher;
 import com.collector.model.Annonce;
 import com.collector.model.User;
 import com.collector.repository.AnnonceRepository;
+
+import io.micrometer.core.instrument.Counter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +31,12 @@ class ValidationServiceTest {
 
     @InjectMocks
     private ValidationService validationService;
+
+    @Mock
+    private Counter annoncesValidees;
+
+    @Mock
+    private Counter annoncesRejetees;
 
     private User vendeur;
 

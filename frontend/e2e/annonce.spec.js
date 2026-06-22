@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Catalogue des annonces', () => {
 
   test('should display the home page', async ({ page }) => {
-    await page.goto('http://localhost:5173')
+    await page.goto('/')
 
     // Vérifie que le titre est présent
     await expect(page).toHaveTitle(/Collector/)
@@ -13,7 +13,7 @@ test.describe('Catalogue des annonces', () => {
   })
 
   test('should display annonces in catalogue', async ({ page }) => {
-    await page.goto('http://localhost:5173')
+    await page.goto('/')
 
     // Attend que les annonces chargent
     await page.waitForSelector('.annonces-grid', { timeout: 10000 })
@@ -25,7 +25,7 @@ test.describe('Catalogue des annonces', () => {
   })
 
   test('should filter annonces by category', async ({ page }) => {
-    await page.goto('http://localhost:5173')
+    await page.goto('/')
 
     // Attend que les annonces chargent
     await page.waitForSelector('.annonces-grid', { timeout: 10000 })
@@ -39,7 +39,7 @@ test.describe('Catalogue des annonces', () => {
   })
 
   test('should search annonces', async ({ page }) => {
-    await page.goto('http://localhost:5173')
+    await page.goto('/')
 
     // Attend que les annonces chargent
     await page.waitForSelector('.annonces-grid', { timeout: 10000 })
