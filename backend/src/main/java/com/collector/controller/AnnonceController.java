@@ -4,6 +4,7 @@ import com.collector.dto.AnnonceDTO;
 import com.collector.model.User;
 import com.collector.repository.UserRepository;
 import com.collector.service.AnnonceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AnnonceController {
     // POST /api/annonces — nécessite d'être connecté en tant que vendeur
     @PostMapping
     public ResponseEntity<AnnonceDTO> creerAnnonce(
-            @RequestBody AnnonceDTO dto,
+            @Valid @RequestBody AnnonceDTO dto,
             @AuthenticationPrincipal Jwt jwt) {
 
         // Récupère l'utilisateur connecté depuis le token Keycloak
