@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     "cloudinary.api-key=test",
     "cloudinary.api-secret=test"
 })
-class AnnonceIntegrationTest {
+class AnnonceControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
